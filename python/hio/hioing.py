@@ -11,11 +11,22 @@ from collections import namedtuple
 
 Versionage = namedtuple("Versionage", "major minor")
 
-Version = Versionage(major=1, minor=0)  # KERI Protocol Version
+Version = Versionage(major=1, minor=0)  # Protocol Version
 
 SEPARATOR =  "\r\n\r\n"
 SEPARATOR_BYTES = SEPARATOR.encode("utf-8")
 
+
+class Mixin():
+    """
+    Base class to enable consistent MRO for mixin multiple inheritance
+    Allows each subclass to call
+    super(MixinSubClass, self).__init__(*pa, **kwa)
+    So the __init__ propagates to common top of Tree
+    https://medium.com/geekculture/cooperative-multiple-inheritance-in-python-practice-60e3ac5f91cc
+    """
+    def __init__(self, *pa, **kwa):
+        pass
 
 
 class HioError(Exception):
@@ -25,6 +36,12 @@ class HioError(Exception):
     To use   raise HioError("Error: message")
     """
 
+class SizeError(HioError):
+    """
+    Resource size related errors
+    Usage:
+        raise SizeError("error message")
+    """
 
 class ValidationError(HioError):
     """
@@ -50,14 +67,42 @@ class OglerError(HioError):
         raise OglerError("error message")
     """
 
+class FilerError(HioError):
+    """
+    Error using or configuring Filer
 
-class Mixin():
+    Usage:
+        raise FilerError("error message")
     """
-    Base class to enable consistent MRO for mixin multiple inheritance
-    Allows each subclass to call
-    super(MixinSubClass, self).__init__(*pa, **kwa)
-    So the __init__ propagates to common top of Tree
-    https://medium.com/geekculture/cooperative-multiple-inheritance-in-python-practice-60e3ac5f91cc
+
+class NamerError(HioError):
     """
-    def __init__(self, *pa, **kwa):
-        pass
+    Error using or configuring Namer
+
+    Usage:
+        raise NamerError("error message")
+    """
+
+class MemoerError(HioError):
+    """
+    Error using or configuring Memoer
+
+    Usage:
+        raise MemoGramError("error message")
+    """
+
+class MultiError(HioError):
+    """
+    Error using or configuring multiprocessing support classes
+
+    Usage:
+        raise MultiError("error message")
+    """
+
+class HierError(HioError):
+    """
+    Error using or configuring hiering support classes
+
+    Usage:
+        raise HierError("error message")
+    """

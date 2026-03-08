@@ -104,7 +104,7 @@
         <button id="hioClientBtn" py-click="run_hio_client_bridge">Run Hio Client (JS bridge)</button>
         <button id="blake3TestBtn" py-click="run_blake3_suite">Run Blake3 Tests</button>
         <button id="indexeddbTestBtn" py-click="run_indexeddb_suite">Run IndexedDB Tests</button>
-        <button id="indexeddbProbeBtn" py-click="run_indexeddb_probe">Run IndexedDB Probe</button>
+
     </div>
 
     <div id="output"><span class="loading">Loading PyScript and packages... (may take 30-60s first time)</span></div>
@@ -114,7 +114,7 @@
     <script type="py" src="./python/run_blake3_suite.py" config="pyscript.toml"></script>
     <script type="py" src="./python/run_hio_client_bridge.py" config="pyscript.toml"></script>
     <script type="py" src="./python/run_indexeddb_suite.py" config="pyscript.toml"></script>
-    <script type="py" src="./python/indexeddb_probe.py" config="pyscript.toml"></script>
+
 
     <script type="module">
         const output = document.getElementById("output");

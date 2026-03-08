@@ -1,13 +1,16 @@
 # -*- encoding: utf-8 -*-
 """
 hio.help package - Minimal version for Pyodide
-Excludes ogling (logging) and other optional modules
+Console-only logging (no filesystem/syslog in browser)
 """
 
-# Skipping ogler initialization - not needed for scheduler
-# from . import ogling
-# ogler = ogling.initOgler(prefix='hio')
+from . import ogling
 
-from .timing import Timer, MonoTimer, TimerError, RetroTimerError
-# Excluded: from .decking import Deck
+# Module-level ogler singleton (console-only in Pyodide)
+ogler = ogling.initOgler(prefix='hio')
+
+from .helping import isNonStringIterable, isNonStringSequence, isIterator, Reat
+from .decking import Deck
 from .hicting import Hict, Mict
+from .timing import (Timer, MonoTimer, TimerError, RetroTimerError,
+                     nowIso8601, toIso8601, fromIso8601)

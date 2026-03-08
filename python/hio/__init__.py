@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 """
-hio package - Minimal scheduler-only version for Pyodide
-Excludes lmdb, falcon, and other C-extension dependencies
+hio package - Pyodide-compatible subset for browser environments
+Excludes TCP/UDP networking, serial, and lmdb-based modules
 """
 
-__version__ = '0.6.19-minimal'
+__version__ = '0.7.19-pyodide'
 
-from .hioing import Mixin, HioError, ValidationError, VersionError
+from .hioing import (Mixin, HioError, SizeError, ValidationError, VersionError,
+                     OglerError, FilerError, NamerError, HierError)
